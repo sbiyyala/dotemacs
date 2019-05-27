@@ -54,4 +54,3 @@
 ;; (require 'init-react)
 ;; (require 'init-angular)
 ;;; .emacs ends here
-(put 'upcase-region 'disabled nil)

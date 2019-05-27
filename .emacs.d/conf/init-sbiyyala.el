@@ -82,4 +82,33 @@
 ;; Remember last session
 (desktop-save-mode 1)
 
+(put 'upcase-region 'disabled nil)
+
+;; PYTHON CONFIGURATION
+;; --------------------------------------
+;; Running jupyter playbook in emacs
+;; In a shell, run jupyter-notebook
+;; ein:notebooklist-open to open a notebook
+
+(elpy-enable)
+(setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i")
+(setq python-shell-completion-native-enable nil)
+(setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
+(add-to-list 'python-shell-completion-native-disabled-interpreters
+             "jupyter")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+
+;; use flycheck not flymake with elpy
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+;; enable autopep8 formatting on save
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
 (provide 'init-sbiyyala)
