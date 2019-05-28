@@ -42,6 +42,10 @@
     helm-projectile
     magit
     projectile
+    elpy
+    ein
+    flycheck
+    py-autopep8
     )
   "A list of packages to be installed at application lauch.")
 
